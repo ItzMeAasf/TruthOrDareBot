@@ -1,11 +1,12 @@
 import os
 import random
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-API_ID = os.environ.get('API_ID', None)
-API_HASH = os.environ.get('API_HASH', None)
-TOKEN = os.environ.get('TOKEN', None)
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+
+API_ID = os.environ.get("API_ID", None)
+API_HASH = os.environ.get("API_HASH", None)
+TOKEN = os.environ.get("TOKEN", None)
 
 # For Local Deploy:
 """
@@ -13,16 +14,10 @@ API_ID = ""
 API_HASH = ""
 TOKEN = ""
 """
-app = Client(
-    "TD" ,
-    api_id = API_ID ,
-    api_hash = API_HASH ,
-    bot_token = TOKEN
-)
+app = Client("TD", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
 TRUTH = (
-    "Have you ghosted someone?"
-    "Have you ever walked in on your parents doing 'it'?",
+    "Have you ghosted someone?" "Have you ever walked in on your parents doing 'it'?",
     "Who was the last person you liked the most? Why?",
     "Have you ever been suspended from school?",
     "If you had to choose between going naked or having your thoughts appear in thought bubbles above your head for everyone to read, which would you choose?",
@@ -38,7 +33,6 @@ TRUTH = (
     "When’s the last time you lied to your parents and why?",
     "Have you ever lied about your age to participate in a contest?",
     "Have you ever been caught checking someone out?",
-  
 )
 
 DARE = (
@@ -94,43 +88,74 @@ DARE = (
     "Suggest me more dares.",
 )
 
+
 def t_or_d(user_id):
-	BUTTON = [[InlineKeyboardButton(text="✅ Truth", callback_data = " ".join(["truth_data",str(user_id)]))]]
-	BUTTON += [[InlineKeyboardButton(text="💪 Dare", callback_data = " ".join(["dare_data",str(user_id)]))]]
-	return InlineKeyboardMarkup(BUTTON)
+    BUTTON = [
+        [
+            InlineKeyboardButton(
+                text="✅ Truth", callback_data=" ".join(["truth_data", str(user_id)])
+            )
+        ]
+    ]
+    BUTTON += [
+        [
+            InlineKeyboardButton(
+                text="💪 Dare", callback_data=" ".join(["dare_data", str(user_id)])
+            )
+        ]
+    ]
+    return InlineKeyboardMarkup(BUTTON)
+
 
 @app.on_message(filters.command("td"))
 async def _(client, message):
-	user = message.from_user
-	await message.reply_text(text="{} Choose The Question Type You Want!".format(user.mention),
-		reply_markup=t_or_d(user.id)
-		)
+    user = message.from_user
+    await message.reply_text(
+        text="{} Choose The Question Type You Want!".format(user.mention),
+        reply_markup=t_or_d(user.id),
+    )
+
 
 @app.on_callback_query()
 async def _(client, callback_query):
-	t_list=random.choice(TRUTH) 
-	d_list=random.choice(DARE) 
-	user = callback_query.from_user 
-	c_q_d, user_id = callback_query.data.split()
-	if str(user.id) == str(user_id):
-		if c_q_d == "truth_data":
-			await callback_query.answer(text="You Asked A Truth Question", show_alert=False) 
-			await client.delete_messages(
-				chat_id=callback_query.message.chat.id,
-				message_ids=callback_query.message.message_id) 
+    t_list = random.choice(TRUTH)
+    d_list = random.choice(DARE)
+    user = callback_query.from_user
+    c_q_d, user_id = callback_query.data.split()
+    if str(user.id) == str(user_id):
+        if c_q_d == "truth_data":
+            await callback_query.answer(
+                text="You Asked A Truth Question", show_alert=False
+            )
+            await client.delete_messages(
+                chat_id=callback_query.message.chat.id,
+                message_ids=callback_query.message.message_id,
+            )
 
-			await callback_query.message.reply_text("**{user} Asked Truth Question:** __{t_list}__".format(user=user.mention, t_list=t_list)) 
-			return
+            await callback_query.message.reply_text(
+                "**{user} Asked Truth Question:** __{t_list}__".format(
+                    user=user.mention, t_list=t_list
+                )
+            )
+            return
 
-		if c_q_d == "dare_data":
-			await callback_query.answer(text="You Asked A Dare Question", show_alert=False)
-			await client.delete_messages(
-				chat_id=callback_query.message.chat.id,
-				message_ids=callback_query.message.message_id)
-			await callback_query.message.reply_text("**{user} Asked Dare Question:** __{d_list}__".format(user=user.mention, d_list=d_list))
-			return
-			
+        if c_q_d == "dare_data":
+            await callback_query.answer(
+                text="You Asked A Dare Question", show_alert=False
+            )
+            await client.delete_messages(
+                chat_id=callback_query.message.chat.id,
+                message_ids=callback_query.message.message_id,
+            )
+            await callback_query.message.reply_text(
+                "**{user} Asked Dare Question:** __{d_list}__".format(
+                    user=user.mention, d_list=d_list
+                )
+            )
+            return
 
-		else:
-		     await callback_query.answer(text="You Are Not The Person Using This Command!", show_alert=False)
-		     return
+        else:
+            await callback_query.answer(
+                text="You Are Not The Person Using This Command!", show_alert=False
+            )
+            return
