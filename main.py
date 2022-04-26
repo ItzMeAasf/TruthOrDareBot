@@ -34,12 +34,14 @@ def t_or_d(user_id):
     ]
     return InlineKeyboardMarkup(BUTTON)
 
+
 @app.on_message(filters.command("start"))
 async def start(_, message):
     await message.reply_photo(
-        photo="https://telegra.ph/file/52161ddc6c3e6dc7d94b5.jpg",
-        caption="Welcome"
+        photo="https://telegra.ph/file/52161ddc6c3e6dc7d94b5.jpg", caption="Welcome"
     )
+
+
 @app.on_message(filters.command("td"))
 async def td(client, message):
     user = message.from_user
