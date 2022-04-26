@@ -13,10 +13,14 @@ TOKEN = os.environ.get("TOKEN", None)
 API_ID = ""
 API_HASH = ""
 TOKEN = ""
-"""
+""" 
 app = Client("TD", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
-
+PM_START_TEXT = """
+<b>Welcome</b> {} <b>ー(  ° v ° )ﾉ</b>
+`I'm A Telegram Truth Or Dare Game Bot!`
+<b>Keep Your Group More Active By Using Cmd /td In Your Group ××</b>
+"""
 def t_or_d(user_id):
     BUTTON = [
         [
@@ -38,17 +42,30 @@ def t_or_d(user_id):
 @app.on_message(filters.command("start"))
 async def start(_, message):
     await message.reply_photo(
-        photo="https://telegra.ph/file/52161ddc6c3e6dc7d94b5.jpg", caption="Welcome"
+        photo="https://telegra.ph/file/52161ddc6c3e6dc7d94b5.jpg", caption=PM_START_TEXT.format(message.from_user.mention)
     )
 
 
 @app.on_message(filters.command("td"))
 async def td(client, message):
     user = message.from_user
+    if message.chat.type == "private":
+    await message.reply_text(
+        text="`This Command Only Works In Group`"
+    )
+    return
+    if not message.chat.type == "private" and not message.reply_to_message:
+    await message.reply_text(
+         text="`Reply To A User`"
+    ) 
+    return
+    if not message.chat.type == "private" and message.reply_to_message:
     await message.reply_text(
         text="{} Choose The Question Type You Want!".format(user.mention),
         reply_markup=t_or_d(user.id),
-    )
+    ) 
+    return
+
 
 
 @app.on_callback_query()
