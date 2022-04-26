@@ -34,9 +34,14 @@ def t_or_d(user_id):
     ]
     return InlineKeyboardMarkup(BUTTON)
 
-
+@app.on_message(filters.command("start"))
+async def start(_, message):
+    await message.reply_photo(
+        photo="https://telegra.ph/file/52161ddc6c3e6dc7d94b5.jpg",
+        caption="Welcome"
+    )
 @app.on_message(filters.command("td"))
-async def _(client, message):
+async def td(client, message):
     user = message.from_user
     await message.reply_text(
         text="{} Choose The Question Type You Want!".format(user.mention),
@@ -45,7 +50,7 @@ async def _(client, message):
 
 
 @app.on_callback_query()
-async def _(client, callback_query):
+async def callbackstuffs(client, callback_query):
     t_link = requests.get("https://api.truthordarebot.xyz/v1/truth").json()
     t_list = t_link.get("question")
     d_link = requests.get("https://api.truthordarebot.xyz/v1/dare").json()
