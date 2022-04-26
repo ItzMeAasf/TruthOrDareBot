@@ -62,6 +62,7 @@ async def td(client, message):
             reply_markup=t_or_d(user.id),
         )
 
+
 @app.on_callback_query()
 async def callbackstuffs(client, callback_query):
     t_link = requests.get("https://api.truthordarebot.xyz/v1/truth").json()
