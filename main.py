@@ -75,7 +75,7 @@ async def callbackstuffs(client, callback_query):
                     reply_markup=InlineKeyboardMarkup([
                        [
                            InlineKeyboardButton(
-                               "Change", callback_data=" ".join(["refresh_truth", str(user_id)]))
+                               "🔄 Change", callback_data=" ".join(["refresh_truth", str(user_id)]))
                        ],
                    ]))
         )
@@ -98,7 +98,7 @@ async def callbackstuffs(client, callback_query):
                     reply_markup=InlineKeyboardMarkup([
                        [
                            InlineKeyboardButton(
-                               "Change", callback_data=" ".join(["refresh_dare", str(user_id)]))
+                               "🔄 Change", callback_data=" ".join(["refresh_dare", str(user_id)]))
                        ],
                    ]))
         )
