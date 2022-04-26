@@ -77,9 +77,7 @@ async def callbackstuffs(client, callback_query):
                            InlineKeyboardButton(
                                "🔄 Change", callback_data=" ".join(["refresh_truth", str(user_id)]))
                        ],
-                   ]))
-        )
-    )
+                   ]))))
                 )
             )
             return
@@ -100,9 +98,7 @@ async def callbackstuffs(client, callback_query):
                            InlineKeyboardButton(
                                "🔄 Change", callback_data=" ".join(["refresh_dare", str(user_id)]))
                        ],
-                   ]))
-        )
-    )
+                   ]))))
             return
 
         else:
