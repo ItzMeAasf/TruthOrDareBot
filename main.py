@@ -54,17 +54,13 @@ async def td(client, message):
     user = message.from_user
     if message.chat.type == "private":
         await message.reply_text(text="`This Command Only Works In Group`")
-    return
     if not message.chat.type == "private" and not message.reply_to_message:
         await message.reply_text(text="`Reply To A User`")
-    return
     if not message.chat.type == "private" and message.reply_to_message:
         await message.reply_text(
             text="{} Choose The Question Type You Want!".format(user.mention),
             reply_markup=t_or_d(user.id),
         )
-    return
-
 
 @app.on_callback_query()
 async def callbackstuffs(client, callback_query):
