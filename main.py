@@ -159,3 +159,5 @@ async def _(client, callback_query):
                 text="You Are Not The Person Using This Command!", show_alert=False
             )
             return
+
+app.run()
