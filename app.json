@@ -21,12 +21,12 @@
          "value": ""
         },
       "API_ID": {
-         "description": "Get API_ID from my.telegram.org, used for How All Inline.",
+         "description": "Get API_ID from my.telegram.org.",
          "required": true,
          "value": ""
         },
       "API_HASH": {
-         "description": "Get API_HASH from my.telegram.org, used for How All Inline.",
+         "description": "Get API_HASH from my.telegram.org.",
          "required": true,
          "value": ""
         }
