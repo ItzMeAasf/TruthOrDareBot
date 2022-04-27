@@ -78,7 +78,7 @@ async def callbackstuffs(client, callback_query):
             )
             await client.delete_messages(
                 chat_id=callback_query.message.chat.id,
-                message_ids=callback_query.message.message.id,
+                message_ids=callback_query.message.id,
             )
 
             await callback_query.message.reply_text(
@@ -107,7 +107,7 @@ async def callbackstuffs(client, callback_query):
             )
             await client.delete_messages(
                 chat_id=callback_query.message.chat.id,
-                message_ids=callback_query.message.message.id,
+                message_ids=callback_query.message.id,
             )
             await callback_query.message.reply_text(
                 "**{user} Asked Dare Question:** __{d_list}__".format(
@@ -135,7 +135,7 @@ async def callbackstuffs(client, callback_query):
             )
             await client.delete_messages(
                 chat_id=callback_query.message.chat.id,
-                message_ids=callback_query.message.message.id,
+                message_ids=callback_query.message.id,
             )
 
             await callback_query.message.reply_text(
@@ -164,7 +164,7 @@ async def callbackstuffs(client, callback_query):
             )
             await client.delete_messages(
                 chat_id=callback_query.message.chat.id,
-                message_ids=callback_query.message.message.id,
+                message_ids=callback_query.message.id,
             )
             await callback_query.message.reply_text(
                 "**{user} Asked Dare Question:** __{d_list}__".format(
