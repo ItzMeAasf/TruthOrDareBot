@@ -91,6 +91,41 @@ async def td(client, message):
     )
     return
 
+@app.on_message(filters.command("truth"))
+async def truth(client, message):
+    t_link = requests.get("https://api.truthordarebot.xyz/v1/truth").json()
+    t_list = t_link.get("question")
+    user = message.from_user
+    if message.chat.type == enums.ChatType.PRIVATE:
+        await message.reply_text(text="`This Command Only Works In Group`")
+        return
+    if not message.reply_to_message:
+        await message.reply_text(text="`Reply To A User`")
+        return
+    await message.reply_text(
+        text="**{user} Asked Truth Question:** __`{t_list}`__".format(
+        user=user.mention, t_list=t_list),
+        reply_markup=change_t(user.id),
+    )
+    return
+
+@app.on_message(filters.command("dare"))
+async def dare(client, message):
+    d_link = requests.get("https://api.truthordarebot.xyz/v1/dare").json()
+    d_list = t_link.get("question")
+    user = message.from_user
+    if message.chat.type == enums.ChatType.PRIVATE:
+        await message.reply_text(text="`This Command Only Works In Group`")
+        return
+    if not message.reply_to_message:
+        await message.reply_text(text="`Reply To A User`")
+        return
+    await message.reply_text(
+        text="**{user} Asked Dare Question:** __`{d_list}`__".format(
+        user=user.mention, d_list=d_list),
+        reply_markup=change_d(user.id),
+    )
+    return
 
 @app.on_callback_query()
 async def callbackstuffs(client, callback_query):
