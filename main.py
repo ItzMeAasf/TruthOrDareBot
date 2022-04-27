@@ -108,20 +108,8 @@ async def callbackstuffs(client, callback_query):
             await callback_query.message.reply_text(
                 "**{user} Asked Truth Question:** __{t_list}__".format(
                     user=user.mention,
-                    t_list=t_list,
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton(
-                                    "🔄 Change",
-                                    callback_data=" ".join(
-                                        ["refresh_truth", str(user_id)]
-                                    ),
-                                )
-                            ],
-                        ]
-                    ),
-                )
+                    t_list=t_list),
+                    reply_markup=change_t(user.id)
             )
             return
 
@@ -136,20 +124,8 @@ async def callbackstuffs(client, callback_query):
             await callback_query.message.reply_text(
                 "**{user} Asked Dare Question:** __{d_list}__".format(
                     user=user.mention,
-                    d_list=d_list,
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton(
-                                    "🔄 Change",
-                                    callback_data=" ".join(
-                                        ["refresh_dare", str(user_id)]
-                                    ),
-                                )
-                            ],
-                        ]
-                    ),
-                )
+                    d_list=d_list),
+                    reply_markup=change_d(user.id)
             )
             return
 
