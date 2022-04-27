@@ -87,7 +87,7 @@ async def td(client, message):
         return
     await message.reply_photo(
         photo="https://telegra.ph/file/eece5d44df46442c493a4.jpg",
-        text="**{} Choose The Question Type You Want!**".format(user.mention),
+        caption="**{} Choose The Question Type You Want!**".format(user.mention),
         reply_markup=t_or_d(user.id),
     )
     return
