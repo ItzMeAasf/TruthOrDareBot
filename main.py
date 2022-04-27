@@ -70,13 +70,22 @@ def change_d(user_id):
 
 @app.on_message(filters.command("start"))
 async def start(_, message):
-    buttons = [[
-        InlineKeyboardButton("➕ Add Me To Your Group ➕", url="https://t.me/TruthOrDarePyroBot?startgroup=true"),
+    buttons = [
+        [
+            InlineKeyboardButton(
+                "➕ Add Me To Your Group ➕",
+                url="https://t.me/TruthOrDarePyroBot?startgroup=true",
+            ),
+        ][
+            InlineKeyboardButton(
+                "🔗 Repo", url="https://github.com/ItzMeAasf/TruthOrDareBot"
+            ),
+            InlineKeyboardButton(
+                "🖲️ Deploy",
+                url="https://heroku.com/deploy?template=https://github.com/ItzMeAasf/TruthOrDareBot",
+            ),
+        ]
     ]
-    [
-        InlineKeyboardButton("🔗 Repo", url="https://github.com/ItzMeAasf/TruthOrDareBot"),
-        InlineKeyboardButton("🖲️ Deploy", url="https://heroku.com/deploy?template=https://github.com/ItzMeAasf/TruthOrDareBot")
-    ]]
     await message.reply_photo(
         photo="https://telegra.ph/file/52161ddc6c3e6dc7d94b5.jpg",
         caption=PM_START_TEXT.format(message.from_user.mention),
