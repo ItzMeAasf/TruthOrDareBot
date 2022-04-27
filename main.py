@@ -8,17 +8,16 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 
-"""
 API_ID = os.environ.get("API_ID", None)
 API_HASH = os.environ.get("API_HASH", None)
 TOKEN = os.environ.get("TOKEN", None)
-"""
+
 # For Local Deploy:
-
-API_ID = "10741020"
-API_HASH = "c973f84740b471d6d813dcaaf49319d5"
-TOKEN = "5389407952:AAEeDcubRUpDdN56i66KQda57-j1p4DNouM"
-
+"""
+API_ID = ""
+API_HASH = ""
+TOKEN = ""
+"""
 app = Client("TD", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
 PM_START_TEXT = """
