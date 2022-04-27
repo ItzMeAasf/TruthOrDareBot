@@ -40,6 +40,26 @@ def t_or_d(user_id):
     ]
     return InlineKeyboardMarkup(BUTTON)
 
+def change_t(user_id):
+    BUTTON = [
+        [
+            InlineKeyboardButton(
+                text="🔄 Change", callback_data=" ".join(["refresh_truth", str(user_id)])
+            )
+        ]
+    ]
+    return InlineKeyboardMarkup(BUTTON)
+
+def change_d(user_id):
+    BUTTON = [
+        [
+            InlineKeyboardButton(
+                text="🔄 Change", callback_data=" ".join(["refresh_dare", str(user_id)])
+            )
+        ]
+    ]
+    return InlineKeyboardMarkup(BUTTON)
+
 
 @app.on_message(filters.command("start"))
 async def start(_, message):
@@ -54,9 +74,10 @@ async def td(client, message):
     user = message.from_user
     if message.chat.type == "private":
         await message.reply_text(text="`This Command Only Works In Group`")
-    if not message.chat.type == "private" and not message.reply_to_message:
+    else:
         await message.reply_text(text="`Reply To A User`")
-    if not message.chat.type == "private" and message.reply_to_message:
+        return
+    if message.reply_to_message:
         await message.reply_text(
             text="{} Choose The Question Type You Want!".format(user.mention),
             reply_markup=t_or_d(user.id),
@@ -142,18 +163,7 @@ async def callbackstuffs(client, callback_query):
                 "**{user} Asked Truth Question:** __{t_list}__".format(
                     user=user.mention,
                     t_list=t_list,
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton(
-                                    "🔄 Change",
-                                    callback_data=" ".join(
-                                        ["refresh_truth", str(user_id)]
-                                    ),
-                                )
-                            ],
-                        ]
-                    ),
+                    reply_markup=change_t(user.id)
                 )
             )
             return
@@ -170,18 +180,7 @@ async def callbackstuffs(client, callback_query):
                 "**{user} Asked Dare Question:** __{d_list}__".format(
                     user=user.mention,
                     d_list=d_list,
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton(
-                                    "🔄 Change",
-                                    callback_data=" ".join(
-                                        ["refresh_dare", str(user_id)]
-                                    ),
-                                )
-                            ],
-                        ]
-                    ),
+                    reply_markup=change_d(user.id)
                 )
             )
             return
