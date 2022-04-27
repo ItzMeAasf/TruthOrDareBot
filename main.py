@@ -140,7 +140,7 @@ async def callbackstuffs(client, callback_query):
 
             await callback_query.message.reply_text(
                 "**{user} Asked Truth Question:** __{t_list}__".format(
-                    user=user.mention, t_list=t_list)
+                    user=user.mention, t_list=t_list),
                     reply_markup=change_t(user.id)
             )
             return
