@@ -1,19 +1,25 @@
 import os
 
+import logging
 import requests
-from pyrogram import Client, filters
+from pyrogram import enums, Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+) 
+
+"""
 API_ID = os.environ.get("API_ID", None)
 API_HASH = os.environ.get("API_HASH", None)
 TOKEN = os.environ.get("TOKEN", None)
-
+"""
 # For Local Deploy:
-"""
-API_ID = ""
-API_HASH = ""
-TOKEN = ""
-"""
+
+API_ID = "10741020"
+API_HASH = "c973f84740b471d6d813dcaaf49319d5"
+TOKEN = "5389407952:AAEeDcubRUpDdN56i66KQda57-j1p4DNouM"
+
 app = Client("TD", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
 PM_START_TEXT = """
@@ -74,18 +80,17 @@ async def start(_, message):
 @app.on_message(filters.command("td"))
 async def td(client, message):
     user = message.from_user
-    if message.chat.type == "private":
+    if message.chat.type == enums.ChatType.PRIVATE:
         await message.reply_text(text="`This Command Only Works In Group`")
         return
     if not message.reply_to_message:
         await message.reply_text(text="`Reply To A User`")
         return
-    else:
-        await message.reply_text(
-            text="{} Choose The Question Type You Want!".format(user.mention),
-            reply_markup=t_or_d(user.id),
-        )
-
+    await message.reply_text(
+        text="**{} Choose The Question Type You Want!**".format(user.mention),
+        reply_markup=t_or_d(user.id),
+    )
+    return
 
 @app.on_callback_query()
 async def callbackstuffs(client, callback_query):
@@ -106,7 +111,7 @@ async def callbackstuffs(client, callback_query):
             )
 
             await callback_query.message.reply_text(
-                "**{user} Asked Truth Question:** __{t_list}__".format(
+                "**{user} Asked Truth Question:** __`{t_list}`__".format(
                     user=user.mention, t_list=t_list
                 ),
                 reply_markup=change_t(user.id),
@@ -122,7 +127,7 @@ async def callbackstuffs(client, callback_query):
                 message_ids=callback_query.message.id,
             )
             await callback_query.message.reply_text(
-                "**{user} Asked Dare Question:** __{d_list}__".format(
+                "**{user} Asked Dare Question:** __`{d_list}`__".format(
                     user=user.mention, d_list=d_list
                 ),
                 reply_markup=change_d(user.id),
@@ -139,7 +144,7 @@ async def callbackstuffs(client, callback_query):
             )
 
             await callback_query.message.reply_text(
-                "**{user} Asked Truth Question:** __{t_list}__".format(
+                "**{user} Asked Truth Question:** __`{t_list}`__".format(
                     user=user.mention, t_list=t_list
                 ),
                 reply_markup=change_t(user.id),
@@ -155,7 +160,7 @@ async def callbackstuffs(client, callback_query):
                 message_ids=callback_query.message.id,
             )
             await callback_query.message.reply_text(
-                "**{user} Asked Dare Question:** __{d_list}__".format(
+                "**{user} Asked Dare Question:** __`{d_list}`__".format(
                     user=user.mention, d_list=d_list
                 ),
                 reply_markup=change_d(user.id),
