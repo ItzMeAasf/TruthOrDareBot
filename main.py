@@ -1,13 +1,12 @@
-import os
-
 import logging
+
 import requests
-from pyrogram import enums, Client, filters
+from pyrogram import Client, enums, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-) 
+)
 
 """
 API_ID = os.environ.get("API_ID", None)
@@ -91,6 +90,7 @@ async def td(client, message):
         reply_markup=t_or_d(user.id),
     )
     return
+
 
 @app.on_callback_query()
 async def callbackstuffs(client, callback_query):
