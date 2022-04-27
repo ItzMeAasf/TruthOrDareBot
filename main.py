@@ -85,7 +85,8 @@ async def td(client, message):
     if not message.reply_to_message:
         await message.reply_text(text="`Reply To A User`")
         return
-    await message.reply_text(
+    await message.reply_photo(
+        photo="https://telegra.ph/file/eece5d44df46442c493a4.jpg",
         text="**{} Choose The Question Type You Want!**".format(user.mention),
         reply_markup=t_or_d(user.id),
     )
