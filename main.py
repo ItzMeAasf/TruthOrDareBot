@@ -77,7 +77,7 @@ async def td(client, message):
     if message.chat.type == "private":
         await message.reply_text(text="`This Command Only Works In Group`")
         return
-    if message.reply_to_message:
+    if not message.reply_to_message:
         await message.reply_text(text="`Reply To A User`")
         return
     else:
