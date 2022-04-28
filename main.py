@@ -36,6 +36,7 @@ REPO_TEXT = """
 • [Docs](https://github.com/ItzMeAasf/TruthOrDareBot/main/Readme.md)
 """
 
+
 def t_or_d(user_id):
     BUTTON = [
         [
@@ -102,18 +103,22 @@ async def start(_, message):
         reply_markup=buttons,
     )
 
+
 @app.on_message(filters.command("repo"))
 async def repo(_, message):
-    buttons = [[
+    buttons = [
+        [
             InlineKeyboardButton(
-                text="🔗 Repo",
-                url="https://github.com/ItzMeAasf/TruthOrDareBot")
-    ]]
+                text="🔗 Repo", url="https://github.com/ItzMeAasf/TruthOrDareBot"
+            )
+        ]
+    ]
     await message.reply_photo(
         photo="https://telegra.ph/file/311df2003dc985a39ddf6.jpg",
         caption=REPO_TEXT.format(message.from_user.mention),
         reply_markup=buttons,
     )
+
 
 @app.on_message(filters.command("td"))
 async def td(client, message):
