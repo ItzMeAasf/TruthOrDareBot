@@ -154,7 +154,9 @@ async def truth(client, message):
         return
     await message.reply_text(
         text="**{user} Asked Truth Question:** __`{t_list}`__ **To {reply}**".format(
-            user=user.mention, t_list=t_list, reply=message.reply_to_message.from_user.mention
+            user=user.mention,
+            t_list=t_list,
+            reply=message.reply_to_message.from_user.mention,
         ),
         reply_markup=change_t(user.id),
     )
@@ -174,7 +176,9 @@ async def dare(client, message):
         return
     await message.reply_text(
         text="**{user} Asked Dare Question:** __`{d_list}`__ **To {reply}**".format(
-            user=user.mention, d_list=d_list, reply=message.reply_to_message.from_user.mention
+            user=user.mention,
+            d_list=d_list,
+            reply=message.reply_to_message.from_user.mention,
         ),
         reply_markup=change_d(user.id),
     )
@@ -201,7 +205,9 @@ async def callbackstuffs(client, callback_query):
 
             await callback_query.message.reply_text(
                 "**{user} Asked Truth Question:** __`{t_list}`__ **To {reply}**".format(
-                    user=user.mention, t_list=t_list, reply=message.reply_to_message.from_user.mention
+                    user=user.mention,
+                    t_list=t_list,
+                    reply=message.reply_to_message.from_user.mention,
                 ),
                 reply_markup=change_t(user.id),
             )
@@ -217,7 +223,9 @@ async def callbackstuffs(client, callback_query):
             )
             await callback_query.message.reply_text(
                 "**{user} Asked Dare Question:** __`{d_list}`__ **To {reply}**".format(
-                    user=user.mention, d_list=d_list, reply=message.reply_to_message.from_user.mention
+                    user=user.mention,
+                    d_list=d_list,
+                    reply=message.reply_to_message.from_user.mention,
                 ),
                 reply_markup=change_d(user.id),
             )
@@ -234,7 +242,9 @@ async def callbackstuffs(client, callback_query):
 
             await callback_query.message.reply_text(
                 "**{user} Asked Truth Question:** __`{t_list}`__ **To {reply}**".format(
-                    user=user.mention, t_list=t_list, reply=message.reply_to_message.from_user.mention
+                    user=user.mention,
+                    t_list=t_list,
+                    reply=message.reply_to_message.from_user.mention,
                 ),
                 reply_markup=change_t(user.id),
             )
@@ -250,7 +260,9 @@ async def callbackstuffs(client, callback_query):
             )
             await callback_query.message.reply_text(
                 "**{user} Asked Dare Question:** __`{d_list}`__ **To {reply}**".format(
-                    user=user.mention, d_list=d_list, reply=message.reply_to_message.from_user.mention
+                    user=user.mention,
+                    d_list=d_list,
+                    reply=message.reply_to_message.from_user.mention,
                 ),
                 reply_markup=change_d(user.id),
             )
