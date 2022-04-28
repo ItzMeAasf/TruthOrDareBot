@@ -1,6 +1,7 @@
 import logging
 import os
 
+import time
 import requests
 from pyrogram import Client, enums, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
@@ -97,6 +98,9 @@ async def start(_, message):
             ),
         ],
     ]
+    kk = await message.reply(text="`Truth Or Dare`")
+    time.sleep(2)
+    await kk.delete()
     await message.reply_photo(
         photo="https://telegra.ph/file/52161ddc6c3e6dc7d94b5.jpg",
         caption=PM_START_TEXT.format(message.from_user.mention),
