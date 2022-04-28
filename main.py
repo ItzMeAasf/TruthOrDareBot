@@ -27,6 +27,14 @@ PM_START_TEXT = """
 <b>Keep Your Group More Active By Using Cmd /td In Your Group ××</b>
 """
 
+REPO_TEXT = """
+**Hello {} Turth Or Dare Pyro Bot By @ItzmeAasf**
+`Contributors/Credits`
+• [ItzMeAasf](https://github.com/ItzMeAasf)
+• [Repository](https://github.com/ItzMeAasf/TruthOrDareBot)
+• [Support](https://telegra.ph/file/0a6dc838a65b51203a348.jpg)
+• [Docs](https://github.com/ItzMeAasf/TruthOrDareBot/main/Readme.md)
+"""
 
 def t_or_d(user_id):
     BUTTON = [
@@ -94,6 +102,18 @@ async def start(_, message):
         reply_markup=buttons,
     )
 
+@app.on_message(filters.command("repo"))
+async def repo(_, message):
+    buttons = [[
+            InlineKeyboardButton(
+                text="🔗 Repo",
+                url="https://github.com/ItzMeAasf/TruthOrDareBot")
+    ]]
+    await message.reply_photo(
+        photo="https://telegra.ph/file/311df2003dc985a39ddf6.jpg",
+        caption=REPO_TEXT.format(message.from_user.mention),
+        reply_markup=buttons,
+    )
 
 @app.on_message(filters.command("td"))
 async def td(client, message):
