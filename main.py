@@ -27,7 +27,6 @@ PM_START_TEXT = """
 <b>Keep Your Group More Active By Using Cmd /td In Your Group ××</b>
 """
 
-
 def t_or_d(user_id):
     BUTTON = [
         [
@@ -73,18 +72,20 @@ async def start(_, message):
     buttons = [
         [
             InlineKeyboardButton(
-                "➕ Add Me To Your Group ➕",
+                text="➕ Add Me To Your Group ➕",
                 url="https://t.me/TruthOrDarePyroBot?startgroup=true",
             ),
-        ][
+        ],
+        [
             InlineKeyboardButton(
-                "🔗 Repo", url="https://github.com/ItzMeAasf/TruthOrDareBot"
+                text="🔗 Repo",
+                url="https://github.com/ItzMeAasf/TruthOrDareBot",
             ),
             InlineKeyboardButton(
-                "🖲️ Deploy",
+                text="🖲️ Deploy",
                 url="https://heroku.com/deploy?template=https://github.com/ItzMeAasf/TruthOrDareBot",
             ),
-        ]
+        ],
     ]
     await message.reply_photo(
         photo="https://telegra.ph/file/52161ddc6c3e6dc7d94b5.jpg",
