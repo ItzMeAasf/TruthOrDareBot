@@ -100,7 +100,7 @@ async def start(_, message):
     await message.reply_photo(
         photo="https://telegra.ph/file/52161ddc6c3e6dc7d94b5.jpg",
         caption=PM_START_TEXT.format(message.from_user.mention),
-        reply_markup=buttons,
+        reply_markup=InlineKeyboardMarkup(buttons),
     )
 
 
@@ -116,7 +116,7 @@ async def repo(_, message):
     await message.reply_photo(
         photo="https://telegra.ph/file/311df2003dc985a39ddf6.jpg",
         caption=REPO_TEXT.format(message.from_user.mention),
-        reply_markup=buttons,
+        reply_markup=InlineKeyboardMarkup(buttons),
     )
 
 
