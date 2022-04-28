@@ -194,7 +194,7 @@ async def callbackstuffs(client, callback_query):
     d_link = requests.get("https://api.truthordarebot.xyz/v1/dare").json()
     d_list = d_link.get("question")
     user = callback_query.from_user
-    hehe = callback_query.reply_to_message
+    hehe = callback_query.message.reply_to_message
     c_q_d, user_id = callback_query.data.split()
     if str(user.id) == str(user_id):
         if c_q_d == "truth_data":
