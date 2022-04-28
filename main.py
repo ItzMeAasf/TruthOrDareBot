@@ -146,6 +146,7 @@ async def truth(client, message):
     t_link = requests.get("https://api.truthordarebot.xyz/v1/truth").json()
     t_list = t_link.get("question")
     user = message.from_user
+    hehe = message.reply_to_message
     if message.chat.type == enums.ChatType.PRIVATE:
         await message.reply_text(text="`This Command Only Works In Group`")
         return
@@ -156,7 +157,7 @@ async def truth(client, message):
         text="**{user} Asked Truth Question:** __`{t_list}`__ **To {reply}**".format(
             user=user.mention,
             t_list=t_list,
-            reply=message.reply_to_message.from_user.mention,
+            reply=hehe.from_user.mention,
         ),
         reply_markup=change_t(user.id),
     )
@@ -168,6 +169,7 @@ async def dare(client, message):
     d_link = requests.get("https://api.truthordarebot.xyz/v1/dare").json()
     d_list = t_link.get("question")
     user = message.from_user
+    hehe = message.reply_to_message
     if message.chat.type == enums.ChatType.PRIVATE:
         await message.reply_text(text="`This Command Only Works In Group`")
         return
@@ -178,7 +180,7 @@ async def dare(client, message):
         text="**{user} Asked Dare Question:** __`{d_list}`__ **To {reply}**".format(
             user=user.mention,
             d_list=d_list,
-            reply=message.reply_to_message.from_user.mention,
+            reply=hehe.from_user.mention,
         ),
         reply_markup=change_d(user.id),
     )
@@ -192,6 +194,7 @@ async def callbackstuffs(client, callback_query):
     d_link = requests.get("https://api.truthordarebot.xyz/v1/dare").json()
     d_list = d_link.get("question")
     user = callback_query.from_user
+    hehe = callback_query.reply_to_message
     c_q_d, user_id = callback_query.data.split()
     if str(user.id) == str(user_id):
         if c_q_d == "truth_data":
@@ -207,7 +210,7 @@ async def callbackstuffs(client, callback_query):
                 "**{user} Asked Truth Question:** __`{t_list}`__ **To {reply}**".format(
                     user=user.mention,
                     t_list=t_list,
-                    reply=message.reply_to_message.from_user.mention,
+                    reply=hehe.from_user.mention,
                 ),
                 reply_markup=change_t(user.id),
             )
@@ -225,7 +228,7 @@ async def callbackstuffs(client, callback_query):
                 "**{user} Asked Dare Question:** __`{d_list}`__ **To {reply}**".format(
                     user=user.mention,
                     d_list=d_list,
-                    reply=message.reply_to_message.from_user.mention,
+                    reply=hehe.from_user.mention,
                 ),
                 reply_markup=change_d(user.id),
             )
@@ -244,7 +247,7 @@ async def callbackstuffs(client, callback_query):
                 "**{user} Asked Truth Question:** __`{t_list}`__ **To {reply}**".format(
                     user=user.mention,
                     t_list=t_list,
-                    reply=message.reply_to_message.from_user.mention,
+                    reply=hehe.from_user.mention,,
                 ),
                 reply_markup=change_t(user.id),
             )
@@ -262,7 +265,7 @@ async def callbackstuffs(client, callback_query):
                 "**{user} Asked Dare Question:** __`{d_list}`__ **To {reply}**".format(
                     user=user.mention,
                     d_list=d_list,
-                    reply=message.reply_to_message.from_user.mention,
+                   reply=hehe.from_user.mention,
                 ),
                 reply_markup=change_d(user.id),
             )
