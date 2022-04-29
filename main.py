@@ -247,7 +247,7 @@ async def callbackstuffs(client, callback_query):
                 "**{user} Asked Truth Question:** __`{t_list}`__ **To {reply}**".format(
                     user=user.mention,
                     t_list=t_list,
-                    reply=hehe.from_user.mention,,
+                    reply=hehe.from_user.mention,
                 ),
                 reply_markup=change_t(user.id),
             )
