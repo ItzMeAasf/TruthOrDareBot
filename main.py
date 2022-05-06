@@ -4,7 +4,13 @@ import time
 
 import requests
 from pyrogram import Client, enums, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import (
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    InputTextMessageContent,
+    InlineQueryResultArticle,
+    InlineQueryResultPhoto,
+)
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -277,5 +283,52 @@ async def callbackstuffs(client, callback_query):
             )
             return
 
+@app.on_inline_query()
+async def inline_query_handler(client, query):
+    t_link = requests.get("https://api.truthordarebot.xyz/v1/truth").json()
+    t_url = t_link.get("question")
+    d_link = requests.get("https://api.truthordarebot.xyz/v1/dare").json()
+    d_url = t_link.get("question")
+    string = query.query.lower()
+    if string == "":
+        await client.answer_inline_query(query.id,
+            results=[
+                InlineQueryResultPhoto(
+                    caption=f"`{t_url}`",
+                    photo_url="https://telegra.ph/file/126ff5c63b42b96147723.jpg",
+                    parse_mode="markdown",
+                    title="✅ Truth",
+                    description=f"Click Here To Get Random Truth Questions",
+                    reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    "🔄 Again", switch_inline_query=""
+                                ),
+                            ]
+                        ]
+                    ),
+                ),
+                InlineQueryResultPhoto(
+                    caption=f"`{d_url}`",
+                    photo_url="https://telegra.ph/file/063fac260df99c09c6d6b.jpg",
+                    parse_mode="markdown",
+                    title=f"💪 Dare",
+                    description=f"Click Here To Get Random Dare Questions",
+                    reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    "🔄 Again", switch_inline_query=""
+                                ),
+                            ]
+                        ]
+                    ),
+                ),
+            ],
+            switch_pm_text="Truth Or Dare",
+            switch_pm_parameter="start",
+            cache_time=300
+        )
 
 app.run()
