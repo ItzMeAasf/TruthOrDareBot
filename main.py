@@ -133,7 +133,7 @@ async def td(client, message):
     if not message.reply_to_message:
         await message.reply_text(text="`Reply To A User`")
         return
-    await message.reply_photo(
+    await message.reply_to_message.reply_photo(
         photo="https://telegra.ph/file/eece5d44df46442c493a4.jpg",
         caption="**{} Choose The Question Type You Want!**".format(user.mention),
         reply_markup=t_or_d(user.id),
@@ -153,7 +153,7 @@ async def truth(client, message):
     if not message.reply_to_message:
         await message.reply_text(text="`Reply To A User`")
         return
-    await message.reply_text(
+    await message.reply_to_message.reply_text(
         text="**{user} Asked Truth Question:** __`{t_list}`__ **To {reply}**".format(
             user=user.mention,
             t_list=t_list,
@@ -176,7 +176,7 @@ async def dare(client, message):
     if not message.reply_to_message:
         await message.reply_text(text="`Reply To A User`")
         return
-    await message.reply_text(
+    await message.reply_to_message.reply_text(
         text="**{user} Asked Dare Question:** __`{d_list}`__ **To {reply}**".format(
             user=user.mention,
             d_list=d_list,
@@ -206,7 +206,7 @@ async def callbackstuffs(client, callback_query):
                 message_ids=callback_query.message.id,
             )
 
-            await callback_query.message.reply_text(
+            await callback_query.message.reply_to_message.reply_text(
                 "**{user} Asked Truth Question:** __`{t_list}`__ **To {reply}**".format(
                     user=user.mention,
                     t_list=t_list,
@@ -224,7 +224,7 @@ async def callbackstuffs(client, callback_query):
                 chat_id=callback_query.message.chat.id,
                 message_ids=callback_query.message.id,
             )
-            await callback_query.message.reply_text(
+            await callback_query.message.reply_to_message.reply_text(
                 "**{user} Asked Dare Question:** __`{d_list}`__ **To {reply}**".format(
                     user=user.mention,
                     d_list=d_list,
@@ -243,7 +243,7 @@ async def callbackstuffs(client, callback_query):
                 message_ids=callback_query.message.id,
             )
 
-            await callback_query.message.reply_text(
+            await callback_query.message.reply_to_message.reply_text(
                 "**{user} Asked Truth Question:** __`{t_list}`__ **To {reply}**".format(
                     user=user.mention,
                     t_list=t_list,
@@ -261,7 +261,7 @@ async def callbackstuffs(client, callback_query):
                 chat_id=callback_query.message.chat.id,
                 message_ids=callback_query.message.id,
             )
-            await callback_query.message.reply_text(
+            await callback_query.message.reply_to_message.reply_text(
                 "**{user} Asked Dare Question:** __`{d_list}`__ **To {reply}**".format(
                     user=user.mention,
                     d_list=d_list,
