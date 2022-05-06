@@ -7,8 +7,6 @@ from pyrogram import Client, enums, filters
 from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
-    InputTextMessageContent,
-    InlineQueryResultArticle,
     InlineQueryResultPhoto,
 )
 
@@ -283,6 +281,7 @@ async def callbackstuffs(client, callback_query):
             )
             return
 
+
 @app.on_inline_query()
 async def inline_query_handler(client, query):
     t_link = requests.get("https://api.truthordarebot.xyz/v1/truth").json()
@@ -291,7 +290,8 @@ async def inline_query_handler(client, query):
     d_url = t_link.get("question")
     string = query.query.lower()
     if string == "":
-        await client.answer_inline_query(query.id,
+        await client.answer_inline_query(
+            query.id,
             results=[
                 InlineQueryResultPhoto(
                     caption=f"`{t_url}`",
@@ -302,9 +302,7 @@ async def inline_query_handler(client, query):
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton(
-                                    "🔄 Again", switch_inline_query=""
-                                ),
+                                InlineKeyboardButton("🔄 Again", switch_inline_query=""),
                             ]
                         ]
                     ),
@@ -318,9 +316,7 @@ async def inline_query_handler(client, query):
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton(
-                                    "🔄 Again", switch_inline_query=""
-                                ),
+                                InlineKeyboardButton("🔄 Again", switch_inline_query=""),
                             ]
                         ]
                     ),
@@ -328,7 +324,8 @@ async def inline_query_handler(client, query):
             ],
             switch_pm_text="Truth Or Dare",
             switch_pm_parameter="start",
-            cache_time=300
+            cache_time=300,
         )
+
 
 app.run()
