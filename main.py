@@ -78,7 +78,7 @@ def change_d(user_id):
     return InlineKeyboardMarkup(BUTTON)
 
 
-@app.on_message(filters.command("start"))
+@app.on_message(filters.command("start", prefixes=["/", ".", "?", "-"]))
 async def start(_, message):
     buttons = [
         [
@@ -108,7 +108,7 @@ async def start(_, message):
     )
 
 
-@app.on_message(filters.command("repo"))
+@app.on_message(filters.command("repo", prefixes=["/", ".", "?", "-"]))
 async def repo(_, message):
     buttons = [
         [
@@ -124,7 +124,7 @@ async def repo(_, message):
     )
 
 
-@app.on_message(filters.command("td"))
+@app.on_message(filters.command("td", prefixes=["/", ".", "?", "-"]))
 async def td(client, message):
     user = message.from_user
     if message.chat.type == enums.ChatType.PRIVATE:
@@ -141,7 +141,7 @@ async def td(client, message):
     return
 
 
-@app.on_message(filters.command("truth"))
+@app.on_message(filters.command("truth", prefixes=["/", ".", "?", "-"]))
 async def truth(client, message):
     t_link = requests.get("https://api.truthordarebot.xyz/v1/truth").json()
     t_list = t_link.get("question")
@@ -164,7 +164,7 @@ async def truth(client, message):
     return
 
 
-@app.on_message(filters.command("dare"))
+@app.on_message(filters.command("dare", prefixes=["/", ".", "?", "-"]))
 async def dare(client, message):
     d_link = requests.get("https://api.truthordarebot.xyz/v1/dare").json()
     d_list = t_link.get("question")
