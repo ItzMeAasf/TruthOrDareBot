@@ -137,11 +137,12 @@ async def td(client, message):
     if not message.reply_to_message:
         await message.reply_text(text="`Reply To A User`")
         return
-    await message.reply_to_message.reply_photo(
+    k = message.reply_to_message.reply_photo(
         photo="https://telegra.ph/file/eece5d44df46442c493a4.jpg",
         caption="**{} Choose The Question Type You Want!**".format(user.mention),
         reply_markup=t_or_d(user.id),
     )
+    app.pin_message(message.chat.id, k, notify=False)
     return
 
 
@@ -157,7 +158,7 @@ async def truth(client, message):
     if not message.reply_to_message:
         await message.reply_text(text="`Reply To A User`")
         return
-    await message.reply_to_message.reply_text(
+    k = message.reply_to_message.reply_text(
         text="**{user} Asked Truth Question:** __`{t_list}`__ **To {reply}**".format(
             user=user.mention,
             t_list=t_list,
@@ -165,13 +166,14 @@ async def truth(client, message):
         ),
         reply_markup=change_t(user.id),
     )
+    app.pin_message(message.chat.id, k, notify=False)
     return
 
 
 @app.on_message(filters.command("dare", prefixes=["/", ".", "?", "-"]))
 async def dare(client, message):
     d_link = requests.get("https://api.truthordarebot.xyz/v1/dare").json()
-    d_list = t_link.get("question")
+    d_list = d_link.get("question")
     user = message.from_user
     hehe = message.reply_to_message
     if message.chat.type == enums.ChatType.PRIVATE:
@@ -180,7 +182,7 @@ async def dare(client, message):
     if not message.reply_to_message:
         await message.reply_text(text="`Reply To A User`")
         return
-    await message.reply_to_message.reply_text(
+    k = message.reply_to_message.reply_text(
         text="**{user} Asked Dare Question:** __`{d_list}`__ **To {reply}**".format(
             user=user.mention,
             d_list=d_list,
@@ -188,6 +190,7 @@ async def dare(client, message):
         ),
         reply_markup=change_d(user.id),
     )
+    app.pin_message(message.chat.id, k, notify=False)
     return
 
 
