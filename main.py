@@ -299,7 +299,7 @@ async def inline_query_handler(client, query):
                 InlineQueryResultPhoto(
                     caption=f"`{t_url}`",
                     photo_url="https://telegra.ph/file/126ff5c63b42b96147723.jpg",
-                    parse_mode="markdown",
+                    parse_mode=enums.ParseMode.MARKDOWN,
                     title="✅ Truth",
                     description=f"Click Here To Get Random Truth Questions",
                     reply_markup=InlineKeyboardMarkup(
@@ -313,7 +313,7 @@ async def inline_query_handler(client, query):
                 InlineQueryResultPhoto(
                     caption=f"`{d_url}`",
                     photo_url="https://telegra.ph/file/063fac260df99c09c6d6b.jpg",
-                    parse_mode="markdown",
+                    parse_mode=enums.ParseMode.MARKDOWN,
                     title=f"💪 Dare",
                     description=f"Click Here To Get Random Dare Questions",
                     reply_markup=InlineKeyboardMarkup(
